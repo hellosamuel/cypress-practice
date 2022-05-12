@@ -16,6 +16,7 @@ jobs:
       - name: Cypress Run
         uses: cypress-io/github-action@v2
         with:
+          browser: chrome
           spec: cypress/integration/1-getting-started/*.spec.ts
 
       - name: Artifact Screenshots
