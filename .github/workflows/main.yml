@@ -1,0 +1,21 @@
+name: cypress e2e-test
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cypress run with debug logs
+        uses: cypress-io/github-action@v2
+        env:
+          DEBUG: '@cypress/github-action'
+        with:
+          browser: chrome
