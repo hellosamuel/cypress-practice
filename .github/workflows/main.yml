@@ -23,12 +23,12 @@ jobs:
         uses: actions/upload-artifact@v2
         if: failure()
         with:
-          name: cypress-screenshots
+          name: failed-screenshots
           path: cypress/screenshots
 
       - name: Artifact Videos
         uses: actions/upload-artifact@v2
         if: failure()
         with:
-          name: cypress-videos
+          name: failed-videos
           path: cypress/videos
