@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
+    "cypress:run": "cypress run -b chrome",
     "lint": "lint-staged"
   },
   "devDependencies": {
