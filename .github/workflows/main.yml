@@ -8,14 +8,29 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
+    container: cypress/browsers:node14.17.6-chrome100-ff98
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Cypress run with debug logs
+      - name: Cypress Run
         uses: cypress-io/github-action@v2
         env:
-          DEBUG: '@cypress/github-action'
+          CYPRESS_video: true
         with:
           browser: chrome
+          spec: cypress/integration/1-getting-started/*.spec.ts
+
+      - name: Artifact Screenshots
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: failed-screenshots
+          path: cypress/screenshots
+
+      - name: Artifact Videos
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: failed-videos
+          path: cypress/videos
